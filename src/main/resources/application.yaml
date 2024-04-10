@@ -1,0 +1,25 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/fumettologo/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8080/realms/fumettologo
+  application:
+    name: Fumettologo-Backend
+  datasource:
+    password: 'apple'
+    driver-class-name: org.postgresql.Driver
+    username: 'postgres'
+    url: jdbc:postgresql://localhost:5432/fumettologo
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 9090
+
+jwt:
+  auth:
+    converter:
+      principle-attribute: preferred_username
