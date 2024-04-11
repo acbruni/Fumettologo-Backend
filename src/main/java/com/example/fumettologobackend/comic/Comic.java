@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "comics")
+@Table(name = "comic")
 @Data
 public class Comic implements Serializable {
 

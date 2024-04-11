@@ -20,7 +20,7 @@ public class ComicController {
         this.comicService = comicService;
     }
 
-    @GetMapping("/comics")
+    @GetMapping("/comic")
     public ResponseEntity<?> getAll(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                     @RequestParam(value = "sortBy", defaultValue = "id") String sortBy) {
@@ -32,7 +32,7 @@ public class ComicController {
         return new ResponseEntity<>(comics, HttpStatus.OK);
     }
 
-    @GetMapping("/comics/title")
+    @GetMapping("/comic/title")
     public ResponseEntity<?> getByTitle(@RequestParam(value = "title") String title,
                                         @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
@@ -44,7 +44,7 @@ public class ComicController {
         }
         return new ResponseEntity<>(comics, HttpStatus.OK);
     }
-    @PutMapping("/admin/comics/{id}/updatePrice")
+    @PutMapping("/admin/comic/{id}/updatePrice")
     public ResponseEntity<?> updatePrice(@PathVariable int id, @RequestParam float newPrice) {
         try {
             comicService.updatePrice(id, newPrice);

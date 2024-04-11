@@ -8,16 +8,17 @@ spring:
   application:
     name: Fumettologo-Backend
   datasource:
-    password: 'apple'
+    url: jdbc:postgresql://localhost:5432/fumettologo
     driver-class-name: org.postgresql.Driver
     username: 'postgres'
-    url: jdbc:postgresql://localhost:5432/fumettologo
+    password: 'apple'
   jpa:
     hibernate:
+      show_sql: true
       ddl-auto: update
 
 server:
-  port: 9090
+  port: 8081
 
 jwt:
   auth:

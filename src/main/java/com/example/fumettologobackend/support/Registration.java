@@ -23,10 +23,10 @@ public class Registration {
         try {
             String usernameAdmin = "anna.c.bruni.23@gmail.com";
             String passwordAdmin = "apple";
-            String clientName = "Fumetteria";
+            String clientName = "Fumettologo";
             String role = "user";
             String serverUrl = "http://localhost:8080";
-            String realm = "fumetteria";
+            String realm = "fumettologo";
 
             Keycloak keycloak = KeycloakBuilder.builder()
                     .serverUrl(serverUrl)
