@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.ToString;
+import org.checkerframework.checker.units.qual.N;
 import org.hibernate.annotations.NaturalId;
 
 import java.io.Serializable;
@@ -53,6 +54,10 @@ public class Comic implements Serializable {
     @ToString.Exclude
     @Column(name = "version")
     private long version;
+
+    @Column(name = "image")
+    @NotNull
+    private String image;
 
     @OneToMany(targetEntity = OrderDetail.class, mappedBy = "comic", fetch = FetchType.LAZY)
     @JsonIgnore

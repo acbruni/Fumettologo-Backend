@@ -11,8 +11,8 @@ import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.List;
@@ -22,8 +22,8 @@ public class Registration {
     public void keycloackRegistration(RegistrationRequest registrationRequest) throws KeycloackRegistrationException {
         try {
             String usernameAdmin = "anna.c.bruni.23@gmail.com";
-            String passwordAdmin = "apple";
-            String clientName = "Fumettologo";
+            String passwordAdmin = "23072001Mao!";
+            String clientName = "springboot-keycloak";
             String role = "user";
             String serverUrl = "http://localhost:8080";
             String realm = "fumettologo";
@@ -36,6 +36,7 @@ public class Registration {
                     .username(usernameAdmin)
                     .password(passwordAdmin)
                     .build();
+            System.out.println('1');
 
             User utente = registrationRequest.getUser();
             UserRepresentation user = new UserRepresentation();
@@ -45,15 +46,19 @@ public class Registration {
             user.setFirstName(utente.getFirstName());
             user.setLastName(utente.getLastName());
             user.setAttributes(Collections.singletonMap("origin", List.of("demo")));
+            System.out.println('2');
 
             RealmResource realmResource = keycloak.realm(realm);
             UsersResource usersResource = realmResource.users();
+            System.out.println('3');
 
             Response response = usersResource.create(user);
+            System.out.println(response);
             System.out.printf("Response: %s %s%n", response.getStatus(), response.getStatusInfo());
             System.out.println(response.getLocation());
             String userId = CreatedResponseUtil.getCreatedId(response);
             System.out.printf("User created with userId: %s%n", userId);
+            System.out.println('4');
 
             CredentialRepresentation passwordCred = new CredentialRepresentation();
             passwordCred.setTemporary(false);
@@ -61,9 +66,11 @@ public class Registration {
             passwordCred.setValue(registrationRequest.getPassword());
             UserResource userResource = usersResource.get(userId);
             userResource.resetPassword(passwordCred);
+            System.out.println('5');
 
             RoleRepresentation testerRealmRole = realmResource.roles().get(role).toRepresentation();
             userResource.roles().realmLevel().add(Collections.singletonList(testerRealmRole));
+            System.out.println('6');
 
         } catch (Exception e) {
             throw new KeycloackRegistrationException();

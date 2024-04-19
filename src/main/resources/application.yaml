@@ -14,7 +14,6 @@ spring:
     password: 'apple'
   jpa:
     hibernate:
-      show_sql: true
       ddl-auto: update
 
 server:
