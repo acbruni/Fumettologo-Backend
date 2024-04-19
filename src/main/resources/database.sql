@@ -17,11 +17,21 @@ VALUES
     (15, 'My Hero Academia 1', 'Kohei Horikoshi', 'Planet Manga', 'Manga', 4.90, 55, 1, 'images/my_hero_academia1.jpg'),
     (16, 'Bleach 3', 'Tite Kubo', 'Planet Manga', 'Manga', 5.80, 39, 1, 'images/bleach3.jpg'),
     (17, 'Bleach 72', 'Tite Kubo', 'Planet Manga', 'Manga', 5.80, 39, 1, 'images/bleach72.jpg'),
-    (18, 'Chainsaw Man 1', ' Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm1.jpg'),
-    (19, 'Chainsaw Man 2', ' Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm2.jpg'),
-    (20, 'Chainsaw Man 3', ' Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm3.jpg'),
-    (21, 'Chainsaw Man 4', ' Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm4.jpg'),
-    (22, 'Chainsaw Man 5', ' Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm5.jpg');
+    (18, 'Chainsaw Man 1', 'Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm1.jpg'),
+    (19, 'Chainsaw Man 2', 'Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm2.jpg'),
+    (20, 'Chainsaw Man 3', 'Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm3.jpg'),
+    (21, 'Chainsaw Man 4', 'Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm4.jpg'),
+    (22, 'Chainsaw Man 5', 'Tatsuki Fujimoto', 'Planet Manga', 'Manga', 5.20, 60, 1, 'images/cm5.jpg'),
+    (23, 'Dragon Ball 1', 'Akira Toriyama', 'Star Comics', 'Manga', 4.99, 60, 1, 'images/db1.jpg'),
+    (24, 'Dragon Ball 2', 'Akira Toriyama', 'Star Comics', 'Manga', 4.99, 60, 1, 'images/db2.jpg'),
+    (25, 'Dragon Ball 3', 'Akira Toriyama', 'Star Comics', 'Manga', 4.99, 60, 1, 'images/db3.jpg'),
+    (26, 'Dragon Ball 4', 'Akira Toriyama', 'Star Comics', 'Manga', 4.99, 60, 1, 'images/db4.jpg'),
+    (27, 'Dragon Ball 5', 'Akira Toriyama', 'Star Comics', 'Manga', 4.99, 60, 1, 'images/db5.jpg'),
+    (28, 'Fullmetal Alchemist 1', 'Hiromo Arakawa', 'Planet Manga', 'Manga', 11.40, 10, 1, 'images/fm1.jpg'),
+    (29, 'Fullmetal Alchemist 18', 'Hiromo Arakawa', 'Planet Manga', 'Manga', 11.40, 10, 1, 'images/fm18.jpg'),
+    (30, 'Tokyo Ghoul 1', 'Sui Ishida', 'JPOP', 'Manga', 6.70, 20, 1, 'images/tg1.jpg'),
+    (31, 'Tokyo Ghoul 2', 'Sui Ishida', 'JPOP', 'Manga', 6.70, 20, 1, 'images/tg2.jpg'),
+    (32, 'Tokyo Ghoul 7', 'Sui Ishida', 'JPOP', 'Manga', 6.70, 20, 1, 'images/tg7.jpg');
 
 INSERT INTO users (id, address, email, first_name, last_name, phone)
 VALUES
