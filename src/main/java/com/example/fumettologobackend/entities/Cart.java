@@ -1,7 +1,5 @@
-package com.example.fumettologobackend.cart;
+package com.example.fumettologobackend.entities;
 
-import com.example.fumettologobackend.cartDetail.CartDetail;
-import com.example.fumettologobackend.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,5 +1,7 @@
-package com.example.fumettologobackend.user;
+package com.example.fumettologobackend.controllers;
 
+import com.example.fumettologobackend.entities.User;
+import com.example.fumettologobackend.services.UserService;
 import com.example.fumettologobackend.support.RegistrationRequest;
 import com.example.fumettologobackend.support.authentication.JwtUtils;
 import com.example.fumettologobackend.support.exceptions.KeycloackRegistrationException;

@@ -1,5 +1,7 @@
-package com.example.fumettologobackend.order;
+package com.example.fumettologobackend.services;
 
+import com.example.fumettologobackend.entities.Order;
+import com.example.fumettologobackend.repositories.OrderRepository;
 import com.example.fumettologobackend.support.exceptions.OrderNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OrderService implements OrderServiceInterface {
+public class OrderService {
     private final OrderRepository orderRepository;
 
     @Autowired
@@ -19,7 +21,6 @@ public class OrderService implements OrderServiceInterface {
         this.orderRepository = orderRepository;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public Order findOne(int id) throws OrderNotFoundException {
         Order order = this.orderRepository.findById(id);
@@ -29,7 +30,6 @@ public class OrderService implements OrderServiceInterface {
         return order;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Order> findAll(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
@@ -40,7 +40,6 @@ public class OrderService implements OrderServiceInterface {
         return new ArrayList<>();
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Order> findByUser(String email, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);

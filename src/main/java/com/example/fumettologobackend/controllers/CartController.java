@@ -1,7 +1,9 @@
-package com.example.fumettologobackend.cart;
+package com.example.fumettologobackend.controllers;
 
-import com.example.fumettologobackend.cartDetail.CartDetail;
-import com.example.fumettologobackend.order.Order;
+import com.example.fumettologobackend.entities.CartDetail;
+import com.example.fumettologobackend.entities.Cart;
+import com.example.fumettologobackend.entities.Order;
+import com.example.fumettologobackend.services.CartService;
 import com.example.fumettologobackend.support.authentication.JwtUtils;
 import com.example.fumettologobackend.support.exceptions.*;
 import jakarta.validation.Valid;
@@ -25,6 +27,17 @@ public class CartController {
 
     @GetMapping
     public ResponseEntity<?> getCartDetails(Authentication authentication) {
+        try {
+            String email = JwtUtils.getEmailFromAuthentication(authentication);
+            Cart cart = this.cartService.getCart(email);
+            return new ResponseEntity<>(cart.getCartDetails(), HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getCart(Authentication authentication) {
         try {
             String email = JwtUtils.getEmailFromAuthentication(authentication);
             Cart cart = this.cartService.getCart(email);

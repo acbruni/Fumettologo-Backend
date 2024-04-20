@@ -1,7 +1,8 @@
-package com.example.fumettologobackend.comic;
+package com.example.fumettologobackend.controllers;
 
+import com.example.fumettologobackend.entities.Comic;
+import com.example.fumettologobackend.services.ComicService;
 import com.example.fumettologobackend.support.exceptions.*;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

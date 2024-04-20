@@ -1,5 +1,6 @@
-package com.example.fumettologobackend.order;
+package com.example.fumettologobackend.repositories;
 
+import com.example.fumettologobackend.entities.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

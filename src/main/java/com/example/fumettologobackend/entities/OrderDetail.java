@@ -1,9 +1,6 @@
-package com.example.fumettologobackend.cartDetail;
+package com.example.fumettologobackend.entities;
 
-import com.example.fumettologobackend.cart.Cart;
-import com.example.fumettologobackend.comic.Comic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -15,10 +12,10 @@ import lombok.ToString;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "cart_details")
+@Table(name = "order_details")
 @Data
 @NoArgsConstructor
-public class CartDetail implements Serializable {
+public class OrderDetail implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,29 +35,23 @@ public class CartDetail implements Serializable {
     @NotNull
     private int quantity;
 
-    @ManyToOne(targetEntity = Cart.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart")
+    @ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "purchase")
     @JsonIgnore
     @ToString.Exclude
-    private Cart cart;
+    private Order order;
 
     @Column(name = "subtotal")
     @NotNull
     @Positive
     private float subTotal;
 
-    @Version
-    @JsonIgnore
-    @ToString.Exclude
-    @Column(name = "version")
-    private long version;
-
-    public CartDetail(Cart cart, Comic comic) {
-        this.cart = cart;
+    public OrderDetail(Comic comic, Order order, float price, int quantity) {
         this.comic = comic;
-        this.price = comic.getPrice();
-        this.quantity = 1;
-        this.subTotal = comic.getPrice();
+        this.order = order;
+        this.price = price;
+        this.quantity = quantity;
+        this.subTotal = this.price*this.quantity;
     }
 
 }

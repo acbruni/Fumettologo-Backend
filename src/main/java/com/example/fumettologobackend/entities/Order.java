@@ -1,7 +1,5 @@
-package com.example.fumettologobackend.order;
+package com.example.fumettologobackend.entities;
 
-import com.example.fumettologobackend.orderDetail.OrderDetail;
-import com.example.fumettologobackend.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

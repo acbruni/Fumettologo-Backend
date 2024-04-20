@@ -1,5 +1,7 @@
-package com.example.fumettologobackend.comic;
+package com.example.fumettologobackend.services;
 
+import com.example.fumettologobackend.entities.Comic;
+import com.example.fumettologobackend.repositories.ComicRepository;
 import com.example.fumettologobackend.support.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ComicService implements ComicServiceInterface {
+public class ComicService {
     private final ComicRepository comicRepository;
 
     @Autowired
@@ -21,7 +23,6 @@ public class ComicService implements ComicServiceInterface {
         this.comicRepository = comicRepository;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public Comic findById(int id) throws ComicNotFoundException {
         Comic comic = this.comicRepository.findById(id);
@@ -31,7 +32,6 @@ public class ComicService implements ComicServiceInterface {
         return comic;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Comic> findAll(int pageNumber, int pageSize, String sortBy) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
@@ -42,7 +42,6 @@ public class ComicService implements ComicServiceInterface {
         return new ArrayList<>();
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<Comic> findByTitle(String title, int pageNumber, int pageSize, String sortBy) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
@@ -53,7 +52,6 @@ public class ComicService implements ComicServiceInterface {
         return new ArrayList<>();
     }
 
-    @Override
     @Transactional
     public void updatePrice(int id, float price) throws ComicNotFoundException {
         Comic comic = findById(id);

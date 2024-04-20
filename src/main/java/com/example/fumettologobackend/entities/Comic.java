@@ -1,14 +1,10 @@
-package com.example.fumettologobackend.comic;
+package com.example.fumettologobackend.entities;
 
-import com.example.fumettologobackend.cartDetail.CartDetail;
-import com.example.fumettologobackend.orderDetail.OrderDetail;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.ToString;
-import org.checkerframework.checker.units.qual.N;
-import org.hibernate.annotations.NaturalId;
 
 import java.io.Serializable;
 import java.util.List;

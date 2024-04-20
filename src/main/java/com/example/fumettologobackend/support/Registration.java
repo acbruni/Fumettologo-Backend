@@ -1,7 +1,7 @@
 package com.example.fumettologobackend.support;
 
 import com.example.fumettologobackend.support.exceptions.KeycloackRegistrationException;
-import com.example.fumettologobackend.user.User;
+import com.example.fumettologobackend.entities.User;
 import lombok.experimental.UtilityClass;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.CreatedResponseUtil;

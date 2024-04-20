@@ -1,5 +1,6 @@
-package com.example.fumettologobackend.cartDetail;
+package com.example.fumettologobackend.repositories;
 
+import com.example.fumettologobackend.entities.CartDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

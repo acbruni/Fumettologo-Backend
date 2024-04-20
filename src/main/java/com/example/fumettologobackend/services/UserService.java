@@ -1,7 +1,9 @@
-package com.example.fumettologobackend.user;
+package com.example.fumettologobackend.services;
 
-import com.example.fumettologobackend.cart.Cart;
-import com.example.fumettologobackend.cart.CartRepository;
+import com.example.fumettologobackend.entities.Cart;
+import com.example.fumettologobackend.repositories.CartRepository;
+import com.example.fumettologobackend.entities.User;
+import com.example.fumettologobackend.repositories.UserRepository;
 import com.example.fumettologobackend.support.Registration;
 import com.example.fumettologobackend.support.RegistrationRequest;
 import com.example.fumettologobackend.support.exceptions.*;
@@ -12,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserService implements UserServiceInterface{
+public class UserService {
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
 
@@ -22,13 +24,11 @@ public class UserService implements UserServiceInterface{
         this.cartRepository = cartRepository;
     }
 
-    @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
         return this.userRepository.findAll();
     }
 
-    @Override
     @Transactional(readOnly = true)
     public User findByEmail(String email) throws UserNotFoundException {
         if(!this.userRepository.existsByEmail(email)) {
@@ -37,7 +37,6 @@ public class UserService implements UserServiceInterface{
         return this.userRepository.findByEmail(email);
     }
 
-    @Override
     @Transactional
     public User register(RegistrationRequest registrationRequest) throws MailUserAlreadyExistsException,
                                                                          KeycloackRegistrationException {

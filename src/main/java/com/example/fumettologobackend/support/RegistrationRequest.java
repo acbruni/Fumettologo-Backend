@@ -1,6 +1,6 @@
 package com.example.fumettologobackend.support;
 
-import com.example.fumettologobackend.user.User;
+import com.example.fumettologobackend.entities.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -1,5 +1,6 @@
-package com.example.fumettologobackend.user;
+package com.example.fumettologobackend.repositories;
 
+import com.example.fumettologobackend.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

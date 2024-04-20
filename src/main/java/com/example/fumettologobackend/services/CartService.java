@@ -1,17 +1,16 @@
-package com.example.fumettologobackend.cart;
+package com.example.fumettologobackend.services;
 
-import com.example.fumettologobackend.cartDetail.CartDetail;
-import com.example.fumettologobackend.cartDetail.CartDetailRepository;
-import com.example.fumettologobackend.comic.Comic;
-import com.example.fumettologobackend.comic.ComicRepository;
-import com.example.fumettologobackend.comic.ComicService;
-import com.example.fumettologobackend.order.Order;
-import com.example.fumettologobackend.order.OrderRepository;
-import com.example.fumettologobackend.orderDetail.OrderDetail;
-import com.example.fumettologobackend.orderDetail.OrderDetailRepository;
+import com.example.fumettologobackend.entities.CartDetail;
+import com.example.fumettologobackend.repositories.CartDetailRepository;
+import com.example.fumettologobackend.entities.Comic;
+import com.example.fumettologobackend.repositories.ComicRepository;
+import com.example.fumettologobackend.entities.Cart;
+import com.example.fumettologobackend.entities.Order;
+import com.example.fumettologobackend.repositories.OrderRepository;
+import com.example.fumettologobackend.entities.OrderDetail;
+import com.example.fumettologobackend.repositories.OrderDetailRepository;
 import com.example.fumettologobackend.support.exceptions.*;
-import com.example.fumettologobackend.user.User;
-import com.example.fumettologobackend.user.UserService;
+import com.example.fumettologobackend.entities.User;
 import jakarta.persistence.OptimisticLockException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Service
-public class CartService implements CartServiceInterface {
+public class CartService {
     private final ComicService comicService;
     private final CartDetailRepository cartDetailRepository;
     private final OrderRepository orderRepository;
@@ -41,7 +40,6 @@ public class CartService implements CartServiceInterface {
         this.userService = userService;
     }
 
-    @Override
     @Transactional
     public Cart getCart(String email) throws UserNotFoundException {
         Cart cart = this.userService.findByEmail(email).getCart();
@@ -54,7 +52,6 @@ public class CartService implements CartServiceInterface {
         return cart;
     }
 
-    @Override
     @Transactional
     public void addToCart(int comicId, String email) throws ComicNotFoundException, UserNotFoundException {
         Cart cart = this.userService.findByEmail(email).getCart();
@@ -72,7 +69,6 @@ public class CartService implements CartServiceInterface {
         this.cartDetailRepository.save(cd);
     }
 
-    @Override
     @Transactional
     public void updateQuantity(int cartDetailId, int quantity, String email) throws OutdatedCartException,
                                                                                     UserNotFoundException {
@@ -88,7 +84,6 @@ public class CartService implements CartServiceInterface {
         this.cartDetailRepository.save(cd);
     }
 
-    @Override
     @Transactional
     public void deleteItem(int cartDetailId, String email) throws OutdatedCartException, UserNotFoundException {
         CartDetail cd = this.cartDetailRepository.findById(cartDetailId);
@@ -100,7 +95,6 @@ public class CartService implements CartServiceInterface {
         this.cartDetailRepository.delete(cd);
     }
 
-    @Override
     @Transactional
     public void clear(String email) throws UserNotFoundException {
         Cart cart = this.userService.findByEmail(email).getCart();
@@ -110,7 +104,6 @@ public class CartService implements CartServiceInterface {
         }
     }
 
-    @Override
     @Transactional(rollbackFor = Exception.class)
     public Order checkout(String email, LinkedList<CartDetail> cartDetails) throws OutdatedPriceException,
                                                                                     NegativeQuantityException,

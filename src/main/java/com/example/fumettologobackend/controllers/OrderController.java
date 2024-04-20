@@ -1,6 +1,8 @@
-package com.example.fumettologobackend.order;
+package com.example.fumettologobackend.controllers;
 
-import com.example.fumettologobackend.orderDetail.OrderDetail;
+import com.example.fumettologobackend.entities.Order;
+import com.example.fumettologobackend.entities.OrderDetail;
+import com.example.fumettologobackend.services.OrderService;
 import com.example.fumettologobackend.support.authentication.JwtUtils;
 import com.example.fumettologobackend.support.exceptions.OrderNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

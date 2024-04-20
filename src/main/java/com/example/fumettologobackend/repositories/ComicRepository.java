@@ -1,5 +1,6 @@
-package com.example.fumettologobackend.comic;
+package com.example.fumettologobackend.repositories;
 
+import com.example.fumettologobackend.entities.Comic;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
