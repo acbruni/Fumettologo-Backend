@@ -20,7 +20,7 @@ public class Comic implements Serializable {
     private int id;
 
     @Column(name = "title")
-    @NotBlank
+    @NotBlank // non può essere vuoto
     private String title;
 
     @Column(name = "author")
@@ -42,7 +42,7 @@ public class Comic implements Serializable {
 
     @Column(name = "quantity")
     @NotNull
-    @PositiveOrZero
+    @PositiveOrZero // positivo o zero
     private int quantity;
 
     @Version
@@ -55,6 +55,10 @@ public class Comic implements Serializable {
     @NotNull
     private String image;
 
+    // relazione bidirezionale uno-a-molti con OrderDetail
+    // FetchType.LAZY indica che orderDetails non verrà caricata nel database quando viene
+    // caricata un'istanza di Comic, ma solo quando il codice tenta di accedere a questa lista
+    // ottimizza l'accesso ai dati
     @OneToMany(targetEntity = OrderDetail.class, mappedBy = "comic", fetch = FetchType.LAZY)
     @JsonIgnore
     @ToString.Exclude

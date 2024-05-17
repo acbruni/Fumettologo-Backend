@@ -27,10 +27,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public List<User> findAll() {
         return this.userRepository.findAll();
-    }
+    } // restituisce una lista di tutti gli utenti presenti nel sistema
 
     @Transactional(readOnly = true)
     public User findByEmail(String email) throws UserNotFoundException {
+        // se l'utente recuperato tramite l'email fornita esiste, restituiscilo
         if(!this.userRepository.existsByEmail(email)) {
             throw new UserNotFoundException();
         }
@@ -40,7 +41,9 @@ public class UserService {
     @Transactional
     public User register(RegistrationRequest registrationRequest) throws MailUserAlreadyExistsException,
                                                                          KeycloackRegistrationException {
-        User user = registrationRequest.getUser();
+        User user = registrationRequest.getUser(); // recupera l'oggetto con le informazioni necessarie per la registrazione dell'utente
+
+        // se non esiste si chiama un metodo esterno per registrare l'utente tramite keycloak
         if(this.userRepository.existsByEmail(user.getEmail())) {
             throw new MailUserAlreadyExistsException();
         }
@@ -49,8 +52,9 @@ public class UserService {
         } catch (KeycloackRegistrationException ke) {
             throw new KeycloackRegistrationException();
         }
-        User savedUser = this.userRepository.save(user);
-        Cart userCart = new Cart();
+
+        User savedUser = this.userRepository.save(user); // l'utente viene salvato nella repository
+        Cart userCart = new Cart(); // viene creato un nuovo carrello per l'utente
         userCart.setUser(savedUser);
         savedUser.setCart(this.cartRepository.save(userCart));
         return savedUser;

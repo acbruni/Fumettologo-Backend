@@ -35,6 +35,7 @@ public class UserController {
     @GetMapping("/profile")
     public ResponseEntity<?> getProfile(Authentication authentication) {
         try {
+            // recupera il profilo dell'utente
             String email = JwtUtils.getEmailFromAuthentication(authentication);
             User user = this.userService.findByEmail(email);
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -46,11 +47,15 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegistrationRequest registrationRequest) {
         try {
+            // registra un nuovo utente
             User savedUser = this.userService.register(registrationRequest);
+            // restituisce l'utente creato con stato HTTP 201
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         } catch (MailUserAlreadyExistsException e) {
+            // HTTP 409 se l'email esiste già
             return new ResponseEntity<>("Email already exists", HttpStatus.CONFLICT);
         } catch (KeycloackRegistrationException e) {
+            // HTTP 400 se c'è un errore nella registrazione con keycloak
             return new ResponseEntity<>("Error in registration", HttpStatus.BAD_REQUEST);
         }
     }

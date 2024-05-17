@@ -43,11 +43,13 @@ public class User implements Serializable {
     @NotBlank
     private String phone;
 
+    // relazione bidirezionale uno-a-molti con Order
     @OneToMany(targetEntity = Order.class, mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
     @ToString.Exclude
     private List<Order> orders;
 
+    // relazione bidireazionale uno-a-uno con Cart
     @OneToOne(targetEntity = Cart.class, mappedBy = "user",fetch = FetchType.LAZY)
     @JsonIgnore
     @ToString.Exclude

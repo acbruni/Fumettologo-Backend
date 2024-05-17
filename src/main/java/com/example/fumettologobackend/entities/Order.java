@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Data
-@NoArgsConstructor
+@NoArgsConstructor // genera un costruttore senza argomenti
 public class Order implements Serializable {
 
     @Id
@@ -24,12 +24,12 @@ public class Order implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp // il campo createTime verrà rimpeito con il timestamp corrente alla creazione dell'entità
+    @Temporal(TemporalType.TIMESTAMP) // specifica il timestamp da utilizzare nel database
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne(targetEntity = User.class) // relazione molti-a-uno con User
     @JoinColumn(name = "user_id")
     @JsonIgnore
     @ToString.Exclude
@@ -40,6 +40,7 @@ public class Order implements Serializable {
     @PositiveOrZero
     private float total;
 
+    // relazione bidirezionale uno-a-molti con OrderDetail
     @OneToMany(targetEntity = OrderDetail.class, mappedBy = "order", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderDetail> orderDetails;

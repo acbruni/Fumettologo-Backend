@@ -27,7 +27,7 @@ public class OrderController {
     @GetMapping("/admin/orders")
     public ResponseEntity<?> getOrders(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-
+        // recupera tutti gli ordini
         List<Order> orders = orderService.findAll(pageNumber, pageSize);
         if(orders.isEmpty()) {
             return new ResponseEntity<>("No orders found", HttpStatus.NOT_FOUND);
@@ -39,7 +39,7 @@ public class OrderController {
     public ResponseEntity<?> getUserOrders(Authentication authentication,
                                            @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
                                            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
-
+        // recupera tutti gli ordini di un utente specifico
         String email = JwtUtils.getEmailFromAuthentication(authentication);
         List<Order> orders = orderService.findByUser(email, pageNumber, pageSize);
         if(orders.isEmpty()) {
@@ -51,8 +51,10 @@ public class OrderController {
     @GetMapping("/profile/orders/{id}")
     public ResponseEntity<?> getOrderDetails(@PathVariable("id") int id, Authentication authentication) {
         try {
+            // recupera i dettagli di un ordine specifico
             String email = JwtUtils.getEmailFromAuthentication(authentication);
             Order order = this.orderService.findOne(id);
+            // HTTP 401 se l'ordine non appartiene all'utente autenticato
             if(!order.getUser().getEmail().equals(email)) {
                 return new ResponseEntity<>("Unauthorized access", HttpStatus.UNAUTHORIZED);
             }

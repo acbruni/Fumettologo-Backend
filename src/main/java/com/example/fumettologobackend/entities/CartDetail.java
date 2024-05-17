@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "cart_details")
 @Data
-@NoArgsConstructor
+@NoArgsConstructor // genera un costruttore senza argomenti
 public class CartDetail implements Serializable {
 
     @Id
@@ -23,20 +23,20 @@ public class CartDetail implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(targetEntity = Comic.class)
-    @JoinColumn(name = "comic")
+    @ManyToOne(targetEntity = Comic.class) // relazione molti-a-uno con Comic
+    @JoinColumn(name = "comic") // chiave esterna
     private Comic comic;
 
     @Column(name = "price")
-    @NotNull
+    @NotNull // non può essere nullo
     private float price;
 
     @Column(name = "quantity")
-    @Positive
+    @Positive // deve essere un valore positivo
     @NotNull
     private int quantity;
 
-    @ManyToOne(targetEntity = Cart.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Cart.class, fetch = FetchType.LAZY) // relazione molti-a-uno con Cart
     @JoinColumn(name = "cart")
     @JsonIgnore
     @ToString.Exclude
@@ -47,7 +47,7 @@ public class CartDetail implements Serializable {
     @Positive
     private float subTotal;
 
-    @Version
+    @Version // gestisce le versioni dell'entità
     @JsonIgnore
     @ToString.Exclude
     @Column(name = "version")

@@ -22,8 +22,8 @@ public class OrderDetail implements Serializable {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne(targetEntity = Comic.class)
-    @JoinColumn(name = "comic")
+    @ManyToOne(targetEntity = Comic.class) // relazione molti-a-uno con Comic
+    @JoinColumn(name = "comic") // chiave esterna
     private Comic comic;
 
     @Column(name = "price")
@@ -35,8 +35,8 @@ public class OrderDetail implements Serializable {
     @NotNull
     private int quantity;
 
-    @ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "purchase")
+    @ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY) // relazione molti-a-uno con Order
+    @JoinColumn(name = "purchase") // chiave esterna
     @JsonIgnore
     @ToString.Exclude
     private Order order;

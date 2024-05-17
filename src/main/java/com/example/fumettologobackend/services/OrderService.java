@@ -16,14 +16,14 @@ import java.util.List;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-    @Autowired
+    @Autowired // iniezione delle dipendenze
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
     @Transactional(readOnly = true)
     public Order findOne(int id) throws OrderNotFoundException {
-        Order order = this.orderRepository.findById(id);
+        Order order = this.orderRepository.findById(id); // recupera l'ordine tramite l'id
         if(order == null) {
             throw new OrderNotFoundException();
         }
@@ -32,8 +32,8 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public List<Order> findAll(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<Order> pagedResult = this.orderRepository.findAllByOrderByCreateTimeDesc(pageable);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize); // creazione della pagina
+        Page<Order> pagedResult = this.orderRepository.findAllByOrderByCreateTimeDesc(pageable); // per ottenere una pagina di risultati ordinati per data di creazione in ordine decerscente
         if(pagedResult.hasContent()) {
             return pagedResult.getContent();
         }
@@ -42,8 +42,8 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public List<Order> findByUser(String email, int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<Order> pagedResult = this.orderRepository.findByUserEmailOrderByCreateTimeDesc(email, pageable);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize); // creazione della pagina
+        Page<Order> pagedResult = this.orderRepository.findByUserEmailOrderByCreateTimeDesc(email, pageable); // pagina dei risultati degli ordini dell'utente specificato ordinati per data di creazione in ordine decrescente
         if(pagedResult.hasContent()) {
             return pagedResult.getContent();
         }

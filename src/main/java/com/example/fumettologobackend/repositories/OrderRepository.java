@@ -10,8 +10,11 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends JpaRepository<Order,Integer> {
     Order findById(int id);
 
+    // cerca e restituisce una pagina di ordini, ordinata per createTime in ordine decrescente
     Page<Order> findAllByOrderByCreateTimeDesc(Pageable pageable);
 
+    // cerca e restituisce una pagina di ordini associati a uno specifico indirizzo email dell'utente
+    // ordinata per createTime in ordine decrescente
     Page<Order> findByUserEmailOrderByCreateTimeDesc(String email, Pageable pageable);
 
 }
